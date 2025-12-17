@@ -63,21 +63,17 @@ def _reshape_norm(data, channel_axis=None, normalize_params={"normalize": False}
     Returns:
         list: List of reshaped and normalized data.
     """
-    if (np.array([td.ndim!=3 for td in data]).sum() > 0 or
-        np.array([td.shape[0]!=3 for td in data]).sum() > 0):
-        data_new = []
-        for td in data:
-            if td.ndim == 3:
-                channel_axis0 = channel_axis if channel_axis is not None else np.array(td.shape).argmin()
-                # put channel axis first 
-                td = np.moveaxis(td, channel_axis0, 0)
-                td = td[:3] # keep at most 3 channels
-            if td.ndim == 2 or (td.ndim == 3 and td.shape[0] == 1):
-                td = np.stack((td, 0*td, 0*td), axis=0)
-            elif td.ndim == 3 and td.shape[0] < 3:
-                td = np.concatenate((td, 0*td[:1]), axis=0)
-            data_new.append(td)
-        data = data_new
+    data_new = []
+    for td in data:
+        if td in data:
+            channel_axis0 = channel_axis if channel_axis is not None else np.array(td.shape).argmin()
+            td = np.moveaxis(td, channel_axis0, 0)
+        elif td.ndim == 2:
+            td = td[np.newaxis, ...]
+    
+        data_new.append(td)
+
+    data = data_new
     if normalize_params["normalize"]:
         data = [
             normalize_img(td, normalize=normalize_params, axis=0)
@@ -314,7 +310,8 @@ def train_seg(net, train_data=None, train_labels=None, train_files=None,
               n_epochs=100, weight_decay=0.1, normalize=True, compute_flows=False,
               save_path=None, save_every=100, save_each=False, nimg_per_epoch=None,
               nimg_test_per_epoch=None, rescale=False, scale_range=None, bsize=256,
-              min_train_masks=5, model_name=None, class_weights=None):
+              min_train_masks=5, model_name=None, class_weights=None, 
+              channel_dropout=0.1, channel_permutation=False):
     """
     Train the network with images for segmentation.
 
@@ -458,6 +455,22 @@ def train_seg(net, train_data=None, train_labels=None, train_files=None,
             imgi, lbl = random_rotate_and_resize(imgs, Y=lbls, rescale=rsc,
                                                             scale_range=scale_range,
                                                             xy=(bsize, bsize))[:2]
+
+            # MULTIMODAL AUGMENTATIONS
+            n_batch, n_chan = imgi.shape[0], imgi.shape[1]
+
+            # 2. Channel Dropout
+            if channel_dropout > 0:
+                for b in range(n_batch):
+                    if np.random.rand() < channel_dropout:
+                        c_to_drop = np.random.randint(1, nchan) if n_chan > 1 else 0
+                        imgi[b, c_to_drop] = 0
+                    if channel_permutation and n_chan > 2:
+                        for b in range(n_batch):
+                            transcript_indices = np.arange(2, n_chan)
+                            np.random.shuffle(transcript_indices)
+                            new_order = np.concatenate(([0, 1], transcript_indices))
+                            imgi[b] = imgi[b, new_order]
             # network and loss optimization
             X = torch.from_numpy(imgi).to(device)
             lbl = torch.from_numpy(lbl).to(device)
