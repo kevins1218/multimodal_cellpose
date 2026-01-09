@@ -81,7 +81,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="cellpose", license="BSD", author="Marius Pachitariu and Carsen Stringer",
+    name="multimodal_cellpose", license="BSD", author="Marius Pachitariu and Carsen Stringer -- Modified by Kevin Shen",
     author_email="stringerc@janelia.hhmi.org",
     description="anatomical segmentation algorithm", long_description=long_description,
     long_description_content_type="text/markdown",
