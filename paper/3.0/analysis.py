@@ -4,7 +4,7 @@ Copyright © 2023 Howard Hughes Medical Institute, Authored by Carsen Stringer a
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.ndimage import gaussian_filter, gaussian_filter1d
-from cellpose import io, transforms, models, metrics, denoise, dynamics, utils
+from multicellpose import io, transforms, models, metrics, denoise, dynamics, utils
 from natsort import natsorted
 from pathlib import Path
 import torch
@@ -25,7 +25,7 @@ io.logger_setup()
 device = torch.device("cuda")
 
 try:
-    from cellpose.segformer import Transformer
+    from multicellpose.segformer import Transformer
 except Exception as e:
     print(e)
     print("need to install segmentation_models_pytorch to run transformer")

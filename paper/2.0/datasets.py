@@ -7,10 +7,10 @@ from tifffile import imread, imsave
 import numpy as np
 from matplotlib import pyplot as plt
 from glob import glob
-from cellpose import models
-from cellpose.io import logger_setup
-from cellpose.transforms import normalize_img
-from cellpose import metrics
+from multicellpose import models
+from multicellpose.io import logger_setup
+from multicellpose.transforms import normalize_img
+from multicellpose import metrics
 from tqdm import tqdm, trange
 from natsort import natsorted
 
@@ -86,7 +86,7 @@ def get_all_files(root):
 
 def load_train_test_all(train_files, train_types, test_files, test_types):
     """ reshape train and test data with cyto chan 0 and nuclei chan 1 """
-    from cellpose.io import imread
+    from multicellpose.io import imread
     train_data = [
         reshape_and_normalize(imread(train_files[i]), train_types[i])
         for i in trange(len(train_files))

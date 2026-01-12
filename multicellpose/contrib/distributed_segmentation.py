@@ -4,8 +4,8 @@ import os, getpass, datetime, pathlib, tempfile, functools, glob
 # non-stdlib core dependencies
 import numpy as np
 import scipy
-import cellpose.io
-import cellpose.models
+import multicellpose.io
+import multicellpose.models
 import tifffile
 import imagecodecs
 
@@ -520,8 +520,8 @@ def read_preprocess_and_segment(
     if worker_logs_directory is not None:
         log_file = f'dask_worker_{distributed.get_worker().name}.log'
         log_file = pathlib.Path(worker_logs_directory).joinpath(log_file)
-    cellpose.io.logger_setup(stdout_file_replacement=log_file)
-    model = cellpose.models.CellposeModel(**model_kwargs)
+    multicellpose.io.logger_setup(stdout_file_replacement=log_file)
+    model = multicellpose.models.CellposeModel(**model_kwargs)
     return model.eval(image, **eval_kwargs)[0].astype(np.uint32)
 
 

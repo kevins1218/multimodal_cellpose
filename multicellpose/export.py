@@ -48,10 +48,10 @@ from urllib.parse import urlparse
 import torch
 import numpy as np
 
-from cellpose.io import imread
-from cellpose.utils import download_url_to_file
-from cellpose.transforms import pad_image_ND, normalize_img, convert_image
-from cellpose.vit_sam import CPnetBioImageIO
+from multicellpose.io import imread
+from multicellpose.utils import download_url_to_file
+from multicellpose.transforms import pad_image_ND, normalize_img, convert_image
+from multicellpose.vit_sam import CPnetBioImageIO
 
 from bioimageio.spec.model.v0_5 import (
     ArchitectureFromFileDescr,

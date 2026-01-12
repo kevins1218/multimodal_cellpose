@@ -6,9 +6,9 @@ import sys, os, argparse
 from tifffile import imread, imsave
 import numpy as np
 from glob import glob
-from cellpose import models
-from cellpose.io import logger_setup
-from cellpose import metrics
+from multicellpose import models
+from multicellpose.io import logger_setup
+from multicellpose import metrics
 from datasets import *
 
 
@@ -75,7 +75,7 @@ def train_model(root, model_type='cellpose', cell_type=None, tissue_type=None,
     del model
     torch.cuda.empty_cache()
     if run_eval:
-        from cellpose import utils
+        from multicellpose import utils
         diam_train = np.array(
             [utils.diameters(train_masks[k])[0] for k in range(len(train_masks))])
         diam_train[diam_train < 5] = 5.
@@ -156,7 +156,7 @@ def eval_model_cyto(root, model_type='cellpose', cell_type=None, tissue_type=Non
                                                      ntrain=0)
     if len(train_files) > 0:
         train_data, train_masks = load_data_masks(train_files)
-        from cellpose import utils
+        from multicellpose import utils
         diam_train = np.array(
             [utils.diameters(train_masks[k])[0] for k in range(len(train_masks))])
         diam_train[diam_train < 5] = 5.

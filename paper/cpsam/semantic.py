@@ -4,12 +4,12 @@ from scipy import ndimage
 from pathlib import Path
 from natsort import natsorted
 import tifffile
-from cellpose import metrics, io
+from multicellpose import metrics, io
 import fastremap
 import torch
 from torch import nn 
 from tqdm import trange, tqdm
-from cellpose import transforms, dynamics, vit_sam, models, train
+from multicellpose import transforms, dynamics, vit_sam, models, train
 
 cl_epithelial = np.array([255,0,0])
 cl_lymphocyte = np.array([255,255,0])

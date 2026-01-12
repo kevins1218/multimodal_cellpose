@@ -1,4 +1,4 @@
-from cellpose import io, metrics, utils, models
+from multicellpose import io, metrics, utils, models
 import pytest
 from subprocess import check_output, STDOUT
 import os

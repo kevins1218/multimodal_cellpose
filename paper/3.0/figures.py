@@ -3,7 +3,7 @@ Copyright © 2023 Howard Hughes Medical Institute, Authored by Carsen Stringer a
 """
 
 import os
-from cellpose import io, metrics, transforms, denoise, models, plot
+from multicellpose import io, metrics, transforms, denoise, models, plot
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
@@ -1835,7 +1835,7 @@ def fig5(folder, save_fig=True):
                         wspace=0.12, hspace=0.05)
     il = 0
 
-    from cellpose import plot
+    from multicellpose import plot
     transl = mtransforms.ScaledTranslation(-19 / 72, 22 / 72, fig.dpi_scale_trans)
     ly0 = 240
     for i in range(nd - 1):

@@ -1,6 +1,6 @@
 import cv2 
 import numpy as np
-from cellpose import transforms, io, models, metrics
+from multicellpose import transforms, io, models, metrics
 from pathlib import Path
 from natsort import natsorted
 import time

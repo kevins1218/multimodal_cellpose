@@ -1,7 +1,7 @@
 import time, os
 import numpy as np
-from cellpose import io, transforms, utils, models, dynamics, metrics, resnet_torch, denoise
-from cellpose.transforms import normalize_img
+from multicellpose import io, transforms, utils, models, dynamics, metrics, resnet_torch, denoise
+from multicellpose.transforms import normalize_img
 from pathlib import Path
 import torch
 from torch import nn

@@ -8,9 +8,9 @@ from glob import glob
 import torch
 from torch import nn
 from tqdm import trange, tqdm
-from cellpose import models
-from cellpose.io import logger_setup, imread, imsave
-from cellpose import metrics, transforms, utils, resnet_torch
+from multicellpose import models
+from multicellpose.io import logger_setup, imread, imsave
+from multicellpose import metrics, transforms, utils, resnet_torch
 from datasets import reshape_and_normalize
 
 

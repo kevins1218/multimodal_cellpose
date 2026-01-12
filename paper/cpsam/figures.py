@@ -5,7 +5,7 @@ import fastremap
 from scipy.ndimage import gaussian_filter1d
 import matplotlib.pyplot as plt
 import numpy as np 
-from cellpose import io, utils, metrics, denoise, transforms
+from multicellpose import io, utils, metrics, denoise, transforms
 import matplotlib
 import matplotlib.gridspec
 import matplotlib.transforms as mtransforms

@@ -8,7 +8,7 @@ import matplotlib.transforms as mtransforms
 import numpy as np
 from matplotlib import rcParams
 from matplotlib.colors import ListedColormap
-from cellpose import utils
+from multicellpose import utils
 
 default_font = 12
 rcParams["font.family"] = "Arial"

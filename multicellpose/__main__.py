@@ -4,12 +4,12 @@ Copyright © 2025 Howard Hughes Medical Institute, Authored by Carsen Stringer ,
 import os, time
 import numpy as np
 from tqdm import tqdm
-from cellpose import utils, models, io, train
+from multicellpose import utils, models, io, train
 from .version import version_str
-from cellpose.cli import get_arg_parser
+from multicellpose.cli import get_arg_parser
 
 try:
-    from cellpose.gui import gui3d, gui
+    from multicellpose.gui import gui3d, gui
     GUI_ENABLED = True
 except ImportError as err:
     GUI_ERROR = err

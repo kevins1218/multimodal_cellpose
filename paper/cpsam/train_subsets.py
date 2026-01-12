@@ -1,5 +1,5 @@
 from segment_anything import sam_model_registry
-from cellpose import io, metrics, models, utils, train, transforms, resnet_torch, dynamics
+from multicellpose import io, metrics, models, utils, train, transforms, resnet_torch, dynamics
 import time
 from tqdm import trange
 from torch import nn 

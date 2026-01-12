@@ -1,4 +1,4 @@
-from cellpose import io, models, train
+from multicellpose import io, models, train
 from subprocess import check_output, STDOUT
 import os, shutil
 import torch

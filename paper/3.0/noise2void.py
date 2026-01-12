@@ -5,8 +5,8 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
-from cellpose import models, io, metrics
-from cellpose.models import CellposeModel
+from multicellpose import models, io, metrics
+from multicellpose.models import CellposeModel
 from tqdm import trange
 # uses tensorflow
 # pip install n2v

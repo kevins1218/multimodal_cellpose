@@ -1,11 +1,11 @@
 import os
 import numpy as np
-from cellpose import io, transforms, utils, models, dynamics, metrics, resnet_torch, denoise
+from multicellpose import io, transforms, utils, models, dynamics, metrics, resnet_torch, denoise
 from natsort import natsorted 
 from pathlib import Path
 from glob import glob
 
-from cellpose.io import logger_setup
+from multicellpose.io import logger_setup
 
 def prediction_test_hidden(root):
     """ root is path to Hidden folder """
